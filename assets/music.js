@@ -2048,3 +2048,6 @@ const music = [
         isStreamable: true
     }
 ]
+
+let musicJson = JSON.stringify(music)
+export {musicJson}
