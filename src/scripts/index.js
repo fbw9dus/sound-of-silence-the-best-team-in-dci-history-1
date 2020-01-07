@@ -6,7 +6,7 @@ import 'bootstrap/scss/bootstrap.scss'
 import {musicJson} from '../../assets/music'
 // \/ All of your javascript should go here \/
 
-var musicIndex = JSON.parse(musicJson)
+//var musicIndex = JSON.parse(musicJson)
 
 document.querySelector('.button1').addEventListener('click', showMyAss)
 
@@ -15,15 +15,14 @@ function showMyAss(){
 
 }
 
+$.getJSON('https://itunes.apple.com/search?term=sound+of+silence&callback=?', function(musicIndex){
+  var min;
+ var sec;
+ console.log(musicIndex)
 
-console.log(musicIndex)
+  for (var i=0; i< musicIndex.results.length; i++){
 
-var min;
-var sec;
-
-for (var i=0; i< musicIndex.length; i++){
-
-    var ms = musicIndex[i].trackTimeMillis
+    var ms = musicIndex.results[i].trackTimeMillis
     min = Math.floor((ms/1000/60) << 0)
     sec  = Math.floor((ms/1000) % 60)
 
@@ -36,11 +35,11 @@ for (var i=0; i< musicIndex.length; i++){
             
               <tr>
                 <th scope="row">${[i + 1]}</th>
-                <td>  <img src=${musicIndex[i].artworkUrl30}></img> ${musicIndex[i].trackName}</td>
-                <td>${musicIndex[i].collectionCensoredName}</td>
-                <td>${musicIndex[i].collectionName}</td>
+                <td>  <img src=${musicIndex.results[i].artworkUrl30}></img> ${musicIndex.results[i].trackName}</td>
+                <td>${musicIndex.results[i].artistName}</td>
+                <td>${musicIndex.results[i].collectionName}</td>
                 <td>${min}:${sec}</td>
-                <td>${musicIndex[i].trackPrice} €</td>
+                <td>${musicIndex.results[i].trackPrice} €</td>
               </tr>
               
             
@@ -53,11 +52,11 @@ for (var i=0; i< musicIndex.length; i++){
             
             <tr>
               <th scope="row">${[i + 1]}</th>
-              <td>  <img src=${musicIndex[i].artworkUrl30}></img> ${musicIndex[i].trackName}</td>
-              <td>${musicIndex[i].collectionCensoredName}</td>
-              <td>${musicIndex[i].collectionName}</td>
+              <td>  <img src=${musicIndex.results[i].artworkUrl30}></img> ${musicIndex.results[i].trackName}</td>
+              <td>${musicIndex.results[i].artistName}</td>
+              <td>${musicIndex.results[i].collectionName}</td>
               <td>${min}:${sec}</td>
-              <td>${musicIndex[i].trackPrice} €</td>
+              <td>${musicIndex.results[i].trackPrice} €</td>
             </tr>
             
           
@@ -79,6 +78,14 @@ $(document).ready(function(){
       });
     });
   });
+})
+
+
+
+
+
+
+
 
 
 /*
