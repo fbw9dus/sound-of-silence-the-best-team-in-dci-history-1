@@ -8,17 +8,46 @@ import {musicJson} from '../../assets/music'
 
 //var musicIndex = JSON.parse(musicJson)
 
-document.querySelector('.button1').addEventListener('click', showMyAss)
+let button = document.querySelector("#submit")
+let input = document.querySelector("#myInput")
 
-function showMyAss(){
+button.addEventListener('click', (e) => {
+  getDataFromItunes()
+})
+
+document.querySelector('.button1').addEventListener('click', showMe)
+function showMe(){
     document.querySelector("#tbody3").classList.toggle("tbody2")
 
 }
 
-$.getJSON('https://itunes.apple.com/search?term=sound+of+silence&callback=?', function(musicIndex){
-  var min;
+let musicIndex;
+function getDataFromItunes(){
+  let json = 'https://itunes.apple.com/search?term='+input.value
+  let cors = 'https://cors-anywhere.herokuapp.com/'
+
+  
+
+  fetch(cors+json)
+  .then(data => data.json())
+  .then(newObject => {
+      musicIndex = newObject
+      console.log(musicIndex)
+  })
+  .then(build)
+  .catch(error => console.log(error))
+  
+  
+  
+}
+
+
+/*$.getJSON('https://itunes.apple.com/search?term=eminem&callback=?', function(musicIndex){*/
+
+function build(){
+ var min;
  var sec;
- console.log(musicIndex)
+ 
 
   for (var i=0; i< musicIndex.results.length; i++){
 
@@ -68,9 +97,9 @@ $.getJSON('https://itunes.apple.com/search?term=sound+of+silence&callback=?', fu
           
   
         
-}
+}}
 
-$(document).ready(function(){
+/*$(document).ready(function(){
     $("#myInput").on("keyup", function() {
       var value = $(this).val().toLowerCase();
       $("#myTable tr").filter(function() {
