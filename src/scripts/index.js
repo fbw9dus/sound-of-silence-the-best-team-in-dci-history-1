@@ -8,6 +8,8 @@ import {musicJson} from '../../assets/music'
 
 //var musicIndex = JSON.parse(musicJson)
 
+
+
 let button = document.querySelector("#submit")
 let input = document.querySelector("#myInput")
 
@@ -40,9 +42,6 @@ function getDataFromItunes(){
   
   
 }
-
-
-/*$.getJSON('https://itunes.apple.com/search?term=eminem&callback=?', function(musicIndex){*/
 
 function build(){
  var min;
@@ -98,55 +97,4 @@ function build(){
   
         
 }}
-
-/*$(document).ready(function(){
-    $("#myInput").on("keyup", function() {
-      var value = $(this).val().toLowerCase();
-      $("#myTable tr").filter(function() {
-        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-      });
-    });
-  });
-})
-
-
-
-
-
-
-
-
-
-/*
-document.querySelector('#myInput').addEventListener('keyup', myFunction)
-
-
-function myFunction() {
-    var input, filter, table, tr, td, i, txtValue, tc;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("myTable");
-    tr = table.getElementsByTagName("tr");
-    for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[1]
-      
-      if (td) {
-        txtValue = td.textContent || td.innerText || tc.textContent || tc.innerText;
-       
-         if (txtValue.toUpperCase().indexOf(filter) > -1) {
-          tr[i].style.display = "";
-        } else {
-          tr[i].style.display = "none";
-        }
-      }       
-    }
-  }*/
-
-  
-
-/*var ms = 298999,
-min = Math.floor((ms/1000/60) << 0),
-sec = Math.floor((ms/1000) % 60);
-
-console.log(min + ':' + sec);*/
 
