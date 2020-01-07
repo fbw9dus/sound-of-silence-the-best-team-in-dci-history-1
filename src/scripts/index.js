@@ -25,12 +25,12 @@ function showMe(){
 
 let musicIndex;
 function getDataFromItunes(){
-  let json = 'https://itunes.apple.com/search?term='+input.value
+  let url = 'https://itunes.apple.com/search?term='+input.value
   let cors = 'https://cors-anywhere.herokuapp.com/'
 
   
 
-  fetch(cors+json)
+  fetch(cors+url)
   .then(data => data.json())
   .then(newObject => {
       musicIndex = newObject
@@ -61,7 +61,7 @@ function build(){
     if(i<10){
             var e = `
             
-              <tr>
+              <tr id="searchResult">
                 <th scope="row">${[i + 1]}</th>
                 <td>  <img src=${musicIndex.results[i].artworkUrl30}></img> ${musicIndex.results[i].trackName}</td>
                 <td>${musicIndex.results[i].artistName}</td>
@@ -78,7 +78,7 @@ function build(){
           else if (i >=10){
             var e = `
             
-            <tr>
+            <tr id="searchResult">
               <th scope="row">${[i + 1]}</th>
               <td>  <img src=${musicIndex.results[i].artworkUrl30}></img> ${musicIndex.results[i].trackName}</td>
               <td>${musicIndex.results[i].artistName}</td>
@@ -98,3 +98,9 @@ function build(){
         
 }}
 
+
+$(document).ready(function(){
+  $("input").click(function(){
+    $("tbody").empty();
+  });
+});
